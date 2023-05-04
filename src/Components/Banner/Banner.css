@@ -1,0 +1,14 @@
+.banner-container p{
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    border: 2px white;
+}
+.banner-container{
+    background-image: url('./../../1011-1-1140x500.jpg');
+    background-size: cover;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

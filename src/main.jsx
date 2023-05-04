@@ -9,24 +9,27 @@ import './index.css'
 import Main from './Layout/MAin.jsx';
 import Banner from './Components/Banner/Banner';
 import Footers from './Components/Footer/Footers';
+import ChefContainer from './Components/ChefContainer/ChefContainer';
+import Chef from './Components/Chef/Chef';
+import Layout from './Layout/Layout';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    children:[
+    children: [
       {
-        path:'/',
-        element:<Banner></Banner>
-      },
+        path: '/',
+        element: <Layout></Layout>
+      }
     ]
-  },
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider 
-    router={router}
+    <RouterProvider
+      router={router}
     >
     </RouterProvider>
   </React.StrictMode>,
