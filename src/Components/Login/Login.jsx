@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import './Login.css'
+import './Login.css';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import app from '../../firebase/firebase.config';
+
+const auth = getAuth(app);
 
 const Login = () => {
 
@@ -18,7 +22,14 @@ const Login = () => {
     const handleSubmit = event => {
       event.preventDefault();
       console.log(`Email: ${email}, Password: ${password}`);
-      // TODO: add logic to authenticate user
+      signInWithEmailAndPassword(auth, email, password)
+      .then(result => {
+        const loggedUser = result.user
+        console.log(loggedUser);
+      })
+      .then(error=>{
+        console.log(error);
+      })
     };
 
     return (
@@ -35,6 +46,7 @@ const Login = () => {
                                     placeholder="Enter email"
                                     value={email}
                                     onChange={handleEmailChange}
+                                    required
                                 />
                             </Form.Group>
 
@@ -45,6 +57,7 @@ const Login = () => {
                                     placeholder="Password"
                                     value={password}
                                     onChange={handlePasswordChange}
+                                    required
                                 />
                             </Form.Group>
 

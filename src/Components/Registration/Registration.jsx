@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import app from '../../firebase/firebase.config';
+
+const auth = getAuth(app)
 
 const Registration = () => {
 
-    const [firstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,75 +36,87 @@ const Registration = () => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(`First Name: ${firstName}, Last Name: ${lastName}, Email: ${email}, Password: ${password}, Confirm Password: ${confirmPassword}`);
-    // TODO: add logic to register user
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(result =>{
+      const loggedUser = result.user
+      console.log(loggedUser);
+    })
+    .then(error =>{
+      console.log(error);
+    })
   };
 
-    return (
-        <div>
-            <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col md={6}>
-          <h1 className="text-center mb-4">Sign Up Page</h1>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicFirstName">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter first name"
-                value={firstName}
-                onChange={handleFirstNameChange}
-              />
-            </Form.Group>
+  return (
+    <div>
+      <Container className='my-4 border border-3 rounded border-black'>
+        <Row className="justify-content-md-center mt-5">
+          <Col md={6}>
+            <h1 className="text-center mb-4">Sign Up Page</h1>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formBasicFirstName">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter first name"
+                  value={firstName}
+                  onChange={handleFirstNameChange}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formBasicLastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter last name"
-                value={lastName}
-                onChange={handleLastNameChange}
-              />
-            </Form.Group>
+              <Form.Group controlId="formBasicLastName">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter last name"
+                  value={lastName}
+                  onChange={handleLastNameChange}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </Form.Group>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </Form.Group>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formBasicConfirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-              />
-            </Form.Group>
+              <Form.Group controlId="formBasicConfirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  required
+                />
+              </Form.Group>
 
-            <Button variant="primary" type="submit" block>
-              Sign Up
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
-        </div>
-    );
+              <Button className='my-3' variant="dark" type="submit" block>
+                Sign Up
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
 };
 
 export default Registration;
