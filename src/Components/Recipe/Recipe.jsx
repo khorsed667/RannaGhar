@@ -1,9 +1,15 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Recipe = ({ rec }) => {
 
     const { name, ingredients, cookingMethod, rating } = rec
+
+    const notify = () =>{
+        toast('Added items to favorite')
+    }
 
     return (
         <div>
@@ -23,6 +29,8 @@ const Recipe = ({ rec }) => {
                     <Card.Text>
                         <p className='fw-semibold'>{rating} Rating</p>
                     </Card.Text>
+                    <Button onClick={notify} variant="dark">Favorite</Button>
+                    <ToastContainer></ToastContainer>
                 </Card.Body>
             </Card>
         </div>

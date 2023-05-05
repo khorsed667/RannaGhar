@@ -16,6 +16,7 @@ import ViewChef from './Components/ViewChef/ViewChef';
 import Login from './Components/Login/Login';
 import Registration from './Components/Registration/Registration';
 import Error from './Components/Error/Error';
+import Vlog from './Components/Vlog/Vlog';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path:'*',
         element: <Error></Error>
+      },
+      {
+        path:'/vlog',
+        element: <Vlog></Vlog>
       }
     ]
   }
