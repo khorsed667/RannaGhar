@@ -1,39 +1,52 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import './Login.css';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import app from '../../firebase/firebase.config';
 import { Link } from 'react-router-dom';
 
-const auth = getAuth(app);
 
 const Login = () => {
+
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider()
+
+    const singInWithGoogle = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                const loggedUser = result.user
+                console.log(loggedUser);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const [error, setError] = useState('')
-  
+
     const handleEmailChange = event => {
-      setEmail(event.target.value);
+        setEmail(event.target.value);
     };
-  
+
     const handlePasswordChange = event => {
-      setPassword(event.target.value);
+        setPassword(event.target.value);
     };
-  
+
     const handleSubmit = event => {
-      event.preventDefault();
-      console.log(`Email: ${email}, Password: ${password}`);
-      signInWithEmailAndPassword(auth, email, password)
-      .then(result => {
-        const loggedUser = result.user
-        console.log(loggedUser);
-      })
-      .then(error=>{
-        console.log(error);
-        setError(error.message)
-      })
+        event.preventDefault();
+        console.log(`Email: ${email}, Password: ${password}`);
+        signInWithEmailAndPassword(auth, email, password)
+            .then(result => {
+                const loggedUser = result.user
+                console.log(loggedUser);
+            })
+            .then(error => {
+                console.log(error);
+                setError(error.message)
+            })
     };
 
     return (
@@ -67,6 +80,11 @@ const Login = () => {
 
                             <p className='text-danger'>{error}</p>
 
+                            <div>
+                                <Button onClick={singInWithGoogle} className='my-3' variant="dark" type="submit" block>
+                                    Login with Google
+                                </Button>
+                            </div>
                             <Button className='my-3' variant="dark" type="submit" block>
                                 Login
                             </Button>

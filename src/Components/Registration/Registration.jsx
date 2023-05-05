@@ -13,6 +13,7 @@ const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [photoUrl, setPhotoUrl] = useState('');
   const [error, setError] = useState('')
 
   const handleFirstNameChange = event => {
@@ -33,6 +34,10 @@ const Registration = () => {
 
   const handleConfirmPasswordChange = event => {
     setConfirmPassword(event.target.value);
+  };
+
+  const handlePhotoUrlChange = event => {
+    setPhotoUrl(event.target.value);
   };
 
   const handleSubmit = event => {
@@ -113,6 +118,16 @@ const Registration = () => {
                   required
                 />
               </Form.Group>
+
+              <Form.Group controlId="formBasicPhotoUrl">
+              <Form.Label>Photo URL</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter photo URL"
+                value={photoUrl}
+                onChange={handlePhotoUrlChange}
+              />
+            </Form.Group>
 
               <Button className='my-3' variant="dark" type="submit" block>
                 Sign Up
