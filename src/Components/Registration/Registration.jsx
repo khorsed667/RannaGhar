@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
 import app from '../../firebase/firebase.config';
+import { Link } from 'react-router-dom';
 
 const auth = getAuth(app)
 
@@ -12,6 +13,7 @@ const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('')
 
   const handleFirstNameChange = event => {
     setFirstName(event.target.value);
@@ -34,16 +36,20 @@ const Registration = () => {
   };
 
   const handleSubmit = event => {
-    event.preventDefault();
-    console.log(`First Name: ${firstName}, Last Name: ${lastName}, Email: ${email}, Password: ${password}, Confirm Password: ${confirmPassword}`);
-    createUserWithEmailAndPassword(auth, email, password)
-    .then(result =>{
-      const loggedUser = result.user
-      console.log(loggedUser);
-    })
-    .then(error =>{
-      console.log(error);
-    })
+    event.preventDefault(); 
+    
+    if(password == confirmPassword){
+      setError("your password did not match")
+      return
+    }
+      createUserWithEmailAndPassword(auth, email, password)
+      .then(result => {
+        const loggedUser = result.user
+        console.log(loggedUser);
+      })
+      .then(error => {
+        console.log(error);
+      })
   };
 
   return (
@@ -111,6 +117,11 @@ const Registration = () => {
               <Button className='my-3' variant="dark" type="submit" block>
                 Sign Up
               </Button>
+              <div className='p-2'>
+                <p>Already have an account? Please <Link to='/login'>Login</Link></p>
+              </div>
+
+              {error}
             </Form>
           </Col>
         </Row>

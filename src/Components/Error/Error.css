@@ -1,0 +1,36 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://thumbs.dreamstime.com/z/error-page-not-found-background-template-business-people-numbers-trendy-style-vector-illustration-191755932.jpg');
+    height: 700px;
+    background-color: #f8f9fa;
+    background-size: cover;
+  }
+  
+  .error-heading {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .error-message {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .error-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: black;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .error-button:hover {
+    background-color: #ddd;
+  }
+  

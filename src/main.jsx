@@ -15,6 +15,7 @@ import Layout from './Layout/Layout';
 import ViewChef from './Components/ViewChef/ViewChef';
 import Login from './Components/Login/Login';
 import Registration from './Components/Registration/Registration';
+import Error from './Components/Error/Error';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path:'/sign-up',
         element:<Registration></Registration>
+      },
+      {
+        path:'*',
+        element: <Error></Error>
       }
     ]
   }

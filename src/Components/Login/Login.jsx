@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import './Login.css';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebase/firebase.config';
+import { Link } from 'react-router-dom';
 
 const auth = getAuth(app);
 
@@ -31,7 +32,7 @@ const Login = () => {
       })
       .then(error=>{
         console.log(error);
-        setError(error)
+        setError(error.message)
       })
     };
 
@@ -69,6 +70,9 @@ const Login = () => {
                             <Button className='my-3' variant="dark" type="submit" block>
                                 Login
                             </Button>
+                            <div className='p-2'>
+                                <p>New to rannaGhar? Please <Link to='/sign-up'>Sign Up</Link></p>
+                            </div>
                         </Form>
                     </Col>
                 </Row>
