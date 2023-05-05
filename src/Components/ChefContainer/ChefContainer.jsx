@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
+import Chef from '../Chef/Chef';
+import './ChefContainer.css'
 
 const ChefContainer = () => {
 
     const [chef, setChef] = useState([])
-    console.log(chef);
 
     useEffect(()=>{
         fetch('http://localhost:5000/chef')
@@ -14,10 +14,13 @@ const ChefContainer = () => {
 
     return (
         <div>
-            <p className='text-center'>This is Chef Container</p>
-            <div className="chef-area">
+            <p className='text-center fs-3 fw-semibold'>Here meet with our Chefs...</p>
+            <div className="chef-area text-center">
                 {
-                    
+                    chef.map(c => <Chef
+                    key={c.id}
+                    c={c}
+                    ></Chef>)
                 }
             </div>
         </div>
