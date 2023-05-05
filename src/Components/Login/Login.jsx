@@ -1,21 +1,37 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import './Login.css';
-import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from '../../firebase/firebase.config';
 import { Link } from 'react-router-dom';
 
 
 const Login = () => {
 
+    const [user, setUser] = useState(null)
+
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider()
+    const githubProvider = new GithubAuthProvider()
+
+    const singInWithGithub = () => {
+        signInWithPopup(auth, githubProvider)
+            .then(result => {
+                const loggedUser = result.user
+                console.log(loggedUser);
+                setUser(loggedUser)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     const singInWithGoogle = () => {
         signInWithPopup(auth, provider)
             .then(result => {
                 const loggedUser = result.user
                 console.log(loggedUser);
+                setUser(loggedUser)
             })
             .catch(error => {
                 console.log(error);
@@ -48,6 +64,16 @@ const Login = () => {
                 setError(error.message)
             })
     };
+
+    const handelLogOut = () => {
+        signOut(auth)
+            .then(result => {
+                setUser(null)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     return (
         <div>
@@ -85,9 +111,19 @@ const Login = () => {
                                     Login with Google
                                 </Button>
                             </div>
-                            <Button className='my-3' variant="dark" type="submit" block>
-                                Login
-                            </Button>
+                            <div>
+                                <Button onClick={singInWithGithub} className='my-3' variant="dark" type="submit" block>
+                                    Login with Github
+                                </Button>
+                            </div>
+                            {
+                                user ?
+                                    <Button onClick={handelLogOut} className='my-3' variant="dark" type="submit" block>
+                                        LogOut
+                                    </Button> :
+                                    <Button className='my-3' variant="dark" type="submit" block>
+                                        Login
+                                    </Button>}
                             <div className='p-2'>
                                 <p>New to rannaGhar? Please <Link to='/sign-up'>Sign Up</Link></p>
                             </div>
