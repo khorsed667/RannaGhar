@@ -7,3 +7,5 @@ Menu display: The website displays the restaurant's menu, including dishes, pric
 Location and hours: The website displays the restaurant's location, hours of operation, and contact information, including phone number, email address, and social media links.
 
 Events and promotions: The website displays upcoming events, specials, and promotions, with the ability to sign up for a newsletter or loyalty program to receive exclusive offers.
+
+live site link: https://rannaghar-ccf5c.web.app/
