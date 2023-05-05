@@ -2,3 +2,8 @@
     background-image: url(./../../chef.jpg);
     background-size: cover;
 }
+.recipe-area{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px
+}
