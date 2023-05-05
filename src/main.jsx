@@ -13,6 +13,8 @@ import ChefContainer from './Components/ChefContainer/ChefContainer';
 import Chef from './Components/Chef/Chef';
 import Layout from './Layout/Layout';
 import ViewChef from './Components/ViewChef/ViewChef';
+import Login from './Components/Login/Login';
+import Registration from './Components/Registration/Registration';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
         path:'chef-recipies/:id',
         element:<ViewChef></ViewChef>,
         loader: ({params}) => fetch(`http://localhost:5000/chef/${params.id}`)
+      },
+      {
+        path:'/login',
+        element:<Login></Login>
+      },
+      {
+        path:'/sign-up',
+        element:<Registration></Registration>
       }
     ]
   }

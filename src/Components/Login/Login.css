@@ -1,0 +1,57 @@
+Styles for the body
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for the header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Styles for the main content */
+main {
+    margin: 20px;
+}
+
+/* Styles for the h1 heading */
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+/* Styles for the paragraphs */
+p {
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Styles for the button */
+button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 7px;
+}
+
+/* Styles for the button on hover */
+button:hover {
+    background-color: #666;
+}
+
+.login-page {
+    width: 600px;
+    margin: 0 auto;
+}
+
+input{
+    width: 300px;
+
+}
