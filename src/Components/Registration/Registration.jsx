@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
 import app from '../../firebase/firebase.config';
 
 const auth = getAuth(app)

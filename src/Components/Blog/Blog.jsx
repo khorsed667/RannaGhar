@@ -9,7 +9,7 @@ const Blog = () => {
     console.log(blog)
 
     useEffect(()=>{
-        fetch('http://localhost:5000/blog')
+        fetch('https://rannghor-server-khorsed667.vercel.app/blog')
         .then(res => res.json())
         .then(data => setBlog(data))
     },[])

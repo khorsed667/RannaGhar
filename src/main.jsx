@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path:'chef-recipies/:id',
         element:<ViewChef></ViewChef>,
-        loader: ({params}) => fetch(`http://localhost:5000/chef/${params.id}`)
+        loader: ({params}) => fetch(`https://rannghor-server-khorsed667.vercel.app/chef/${params.id}`)
       },
       {
         path:'/login',

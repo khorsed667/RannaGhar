@@ -10,6 +10,8 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [error, setError] = useState('')
   
     const handleEmailChange = event => {
       setEmail(event.target.value);
@@ -29,6 +31,7 @@ const Login = () => {
       })
       .then(error=>{
         console.log(error);
+        setError(error)
       })
     };
 
@@ -60,6 +63,8 @@ const Login = () => {
                                     required
                                 />
                             </Form.Group>
+
+                            <p className='text-danger'>{error}</p>
 
                             <Button className='my-3' variant="dark" type="submit" block>
                                 Login
