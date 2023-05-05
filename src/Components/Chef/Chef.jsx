@@ -1,12 +1,11 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Chef = ({ c }) => {
-    console.log(c)
 
     const { chefName, id, yearsOfExperience, numRecipes, likes, picture } = c
 
-    console.log(chefName);
     return (
         <div>
             <Card style={{ width: '18rem' }}>
@@ -22,7 +21,7 @@ const Chef = ({ c }) => {
                             <p>{likes}k likes</p>
                         </div>
                     </div>
-                    <Button variant="dark">View Chef</Button>
+                    <Link to={`/chef-recipies/${c.id}`}><Button variant="dark">View Recipes</Button></Link>
                 </Card.Body>
             </Card>
         </div>
